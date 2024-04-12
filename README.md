@@ -1,5 +1,10 @@
 # ens-metadata-service
 
+`yarn run dev`
+以后去`http://localhost:8080/docs`
+获取NFT图片
+http://localhost:8080/sepolia/0x610a87b2b591d5e61d920A1347AB4BB44cF2dEbC/26280710455019346800718503844757441494596883333351368361765033967083012729520/image
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]

@@ -8,18 +8,20 @@ import {
 } from '../config';
 
 const NODE_PROVIDERS = {
-  INFURA    : 'INFURA',
+  INFURA: 'INFURA',
   CLOUDFLARE: 'CLOUDFLARE',
-  GOOGLE    : 'GOOGLE',
-  GETH      : 'GETH'
+  GOOGLE: 'GOOGLE',
+  GETH: 'GETH'
 };
 
+// @todo 设置链
 export const NETWORK = {
-  LOCAL  : 'local',
+  LOCAL: 'local',
   RINKEBY: 'rinkeby',
   ROPSTEN: 'ropsten',
-  GOERLI : 'goerli',
+  GOERLI: 'goerli',
   MAINNET: 'mainnet',
+  SEPOLIA: 'sepolia'
 } as const;
 
 export type NetworkName = typeof NETWORK[keyof typeof NETWORK];
@@ -72,6 +74,9 @@ export default function getNetwork(network: NetworkName): {
     case NETWORK.MAINNET:
       SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/ensdomains/ens';
       break;
+    case NETWORK.SEPOLIA:
+      SUBGRAPH_URL = 'https://api.studio.thegraph.com/query/47821/ens-subgraph-sepolia/version/latest';
+      break;
     default:
       throw new UnsupportedNetwork(`Unknown network '${network}'`, 501);
   }
@@ -81,6 +86,7 @@ export default function getNetwork(network: NetworkName): {
   // add source param at the end for better request measurability
   SUBGRAPH_URL = SUBGRAPH_URL + '?source=ens-metadata';
 
+  console.log(WEB3_URL)
   const provider = new ethers.providers.StaticJsonRpcProvider(WEB3_URL);
   return { WEB3_URL, SUBGRAPH_URL, provider };
 }
